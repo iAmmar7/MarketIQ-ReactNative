@@ -3,6 +3,7 @@ import {StyleSheet, FlatList, ActivityIndicator, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import ListItem from './ListItem';
+import Loader from './Loader';
 import {getAllUsers} from '../store/actions/users';
 
 const UsersList = () => {
@@ -15,12 +16,8 @@ const UsersList = () => {
   const {users, user, loading} = useSelector((state) => state.users);
   console.log('User', loading);
 
-  if (!loading) {
-    return (
-      <View>
-        <ActivityIndicator size="large" />
-      </View>
-    );
+  if (loading) {
+    return <Loader />;
   }
 
   return (
@@ -41,6 +38,7 @@ const UsersList = () => {
 
 const styles = StyleSheet.create({
   listContainer: {
+    marginTop: 10,
     width: '100%',
   },
 });

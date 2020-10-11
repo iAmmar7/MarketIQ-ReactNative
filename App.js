@@ -7,8 +7,14 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StyleSheet, ScrollView, StatusBar} from 'react-native';
-import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  StatusBar,
+  View,
+} from 'react-native';
+import {Header} from 'react-native/Libraries/NewAppScreen';
 import {Provider} from 'react-redux';
 
 import store from './src/store/configureStore';
@@ -35,7 +41,6 @@ const App: () => React$Node = () => {
 const styles = StyleSheet.create({
   scrollView: {
     marginTop: StatusBar.currentHeight || 0,
-    backgroundColor: Colors.lighter,
   },
 });
 
