@@ -6,41 +6,35 @@ import {
   Text,
   TouchableHighlight,
   View,
+  Image,
 } from 'react-native';
 
-const UserModal = ({visible}) => {
-  const [modalVisible, setModalVisible] = useState(visible ?? false);
+const UserModal = ({visible, onModalClose, data}) => {
   return (
     <View style={styles.centeredView}>
       <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-        }}>
+        visible={visible}
+        onRequestClose={onModalClose}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
+            <Image
+              resizeMode="cover"
+              source={{uri: data.avatar_url}}
+              style={styles.userImage}
+            />
+            <Text style={styles.modalText}>{data.login}</Text>
+            <Text style={styles.modalText}>{data.url}</Text>
 
             <TouchableHighlight
-              style={{...styles.openButton, backgroundColor: '#2196F3'}}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
+              style={{...styles.openButton, backgroundColor: 'red'}}
+              onPress={onModalClose}>
+              <Text style={styles.textStyle}>Close</Text>
             </TouchableHighlight>
           </View>
         </View>
       </Modal>
-
-      <TouchableHighlight
-        style={styles.openButton}
-        onPress={() => {
-          setModalVisible(true);
-        }}>
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </TouchableHighlight>
     </View>
   );
 };
@@ -81,6 +75,11 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+  },
+  userImage: {
+    marginRight: 8,
+    height: 50,
+    width: 50,
   },
 });
 

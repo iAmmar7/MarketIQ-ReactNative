@@ -2,12 +2,12 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 const ListItem = (props) => (
-  <TouchableOpacity onPress={() => console.log('Do nothing')}>
+  <TouchableOpacity onPress={(item) => props.onItemPressed(props.userObj)}>
     <View style={styles.listItem}>
       <Image
         resizeMode="cover"
         source={{uri: props.imageURL}}
-        style={styles.placeImage}
+        style={styles.userImage}
       />
       <Text>{props.username}</Text>
     </View>
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  placeImage: {
+  userImage: {
     marginRight: 8,
     height: 30,
     width: 30,
