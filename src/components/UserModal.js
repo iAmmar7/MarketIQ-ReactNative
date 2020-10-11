@@ -7,9 +7,18 @@ import {
   TouchableHighlight,
   View,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 
 const UserModal = ({visible, onModalClose, data}) => {
+  const openLink = () => {
+    Linking.canOpenURL(data.html_url).then((supported) => {
+      if (supported) {
+        Linking.openURL(data.html_url);
+      }
+    });
+  };
+
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -25,7 +34,9 @@ const UserModal = ({visible, onModalClose, data}) => {
               style={styles.userImage}
             />
             <Text style={styles.modalText}>{data.login}</Text>
-            <Text style={styles.modalText}>{data.url}</Text>
+            <TouchableOpacity style={styles.modalText} onPress={openLink}>
+              <Text style={{color: 'blue'}}>{data.html_url}</Text>
+            </TouchableOpacity>
 
             <TouchableHighlight
               style={{...styles.openButton, backgroundColor: 'red'}}

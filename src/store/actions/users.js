@@ -1,3 +1,6 @@
+import {Alert} from 'react-native';
+import axios from 'axios';
+
 import {
   START_LOADING,
   STOP_LOADING,
@@ -6,7 +9,6 @@ import {
   GET_USER_SUCCESS,
   GET_USER_FAILURE,
 } from './types';
-import axios from 'axios';
 
 export const getAllUsers = () => async (dispatch) => {
   dispatch({type: START_LOADING});
@@ -29,12 +31,13 @@ export const getAllUsers = () => async (dispatch) => {
 };
 
 export const getUser = (searchValue) => async (dispatch) => {
-  console.log(searchValue);
   if (searchValue.trim().length < 1) {
     dispatch({
       type: GET_USER_SUCCESS,
       user: null,
     });
+  } else if (/\s/.test(searchValue)) {
+    Alert.alert('Waring', 'Username should not contain any whitespaces');
   } else {
     dispatch({type: START_LOADING});
 

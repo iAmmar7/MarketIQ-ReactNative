@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, TextInput} from 'react-native';
+import {StyleSheet, TextInput, Alert} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 import {getUser} from '../store/actions/users';
@@ -15,9 +15,7 @@ const searchField = () => {
 
   useEffect(() => {
     const timeOutId = setTimeout(() => {
-      // if (value.trim().length > 0) {
       dispatch(getUser(value));
-      // }
     }, 1000);
     return () => clearTimeout(timeOutId);
   }, [value]);
