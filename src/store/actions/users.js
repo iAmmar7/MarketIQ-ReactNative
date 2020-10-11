@@ -37,7 +37,7 @@ export const getUser = (searchValue) => async (dispatch) => {
       user: null,
     });
   } else if (/\s/.test(searchValue)) {
-    Alert.alert('Waring', 'Username should not contain any whitespaces');
+    Alert.alert('Warning', 'Username should not contain any whitespaces');
   } else {
     dispatch({type: START_LOADING});
 
