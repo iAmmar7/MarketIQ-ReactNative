@@ -20,7 +20,7 @@ import {Provider} from 'react-redux';
 import store from './src/store/configureStore';
 import {getAllUsers} from './src/store/actions/users';
 import SearchField from './src/components/SearchField';
-import UsersList from './src/components/UsersList';
+import Home from './src/components/Home';
 
 const App: () => React$Node = () => {
   return (
@@ -32,7 +32,7 @@ const App: () => React$Node = () => {
           style={styles.scrollView}>
           <SearchField />
         </ScrollView>
-        <UsersList />
+        <Home />
       </SafeAreaView>
     </Provider>
   );

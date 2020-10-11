@@ -17,8 +17,6 @@ const UsersList = () => {
   }, []);
 
   const {users, user, loading} = useSelector((state) => state.users);
-  console.log('User', loading);
-  console.log('Modal', showModal);
 
   const itemPressed = (selectedUser) => {
     setSelectedUser(selectedUser);

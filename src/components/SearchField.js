@@ -15,9 +15,9 @@ const searchField = () => {
 
   useEffect(() => {
     const timeOutId = setTimeout(() => {
-      if (value.trim().length > 0) {
-        dispatch(getUser(value));
-      }
+      // if (value.trim().length > 0) {
+      dispatch(getUser(value));
+      // }
     }, 1000);
     return () => clearTimeout(timeOutId);
   }, [value]);

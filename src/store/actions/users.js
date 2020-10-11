@@ -29,25 +29,33 @@ export const getAllUsers = () => async (dispatch) => {
 };
 
 export const getUser = (searchValue) => async (dispatch) => {
-  dispatch({type: START_LOADING});
-
-  const response = await axios.get(
-    `https://api.github.com/users/${searchValue}`,
-  );
-
-  if (response.data) {
-    dispatch({type: STOP_LOADING});
-
+  console.log(searchValue);
+  if (searchValue.trim().length < 1) {
     dispatch({
       type: GET_USER_SUCCESS,
-      user: response.data,
+      user: null,
     });
   } else {
-    dispatch({type: STOP_LOADING});
+    dispatch({type: START_LOADING});
 
-    dispatch({
-      type: GET_USER_FAILURE,
-      error: response,
-    });
+    const response = await axios.get(
+      `https://api.github.com/users/${searchValue}`,
+    );
+
+    if (response.data) {
+      dispatch({type: STOP_LOADING});
+
+      dispatch({
+        type: GET_USER_SUCCESS,
+        user: response.data,
+      });
+    } else {
+      dispatch({type: STOP_LOADING});
+
+      dispatch({
+        type: GET_USER_FAILURE,
+        error: response,
+      });
+    }
   }
 };
